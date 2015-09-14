@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AddressBarEditor">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="vendor/bootstrap-3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/popup.css"/>
+</head>
+<body>
+<div id="content" class="container" ng-controller="MainController" ng-hotkey="13, reloadPage()">
+    <div class="form-group-sm">
+        <div class="input-group">
+            <span class="input-group-addon favicon" ng-show="urlData.icon">
+                <img ng-src="{{urlData.icon}}" alt="@" height="16"/>
+            </span>
+            <input type="text" class="form-control" id="input_host" ng-model="urlData.host"/>
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="reloadPage()" tabindex="-1">
+                    <i class="glyphicon glyphicon-repeat"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div class="form-group-sm">
+        <label for="input_path" class="control-label">Path</label>
+        <input type="text" class="form-control" id="input_path" ng-model="urlData.path"/>
+    </div>
+    <div class="form-group-sm">
+        <label class="control-label">Query</label>
+
+        <div class="input-query-group" ng-show="urlData.query.length > 0">
+            <div class="input-group" ng-repeat="qItem in urlData.query" ng-hotkey="46, removeRow(qItem.key)">
+                <div class="col-inputs">
+                    <input type="text" class="form-control query-name"
+                           ng-model="qItem.name" placeholder="name"/>
+                    <input type="text" class="form-control query-value"
+                           ng-model="qItem.value" placeholder="value"/>
+                </div>
+                <div class="col-remove">
+                    <a class="btn btn-link" href="#" ng-click="removeRow(qItem.key)" tabindex="-1">
+                        <i class="glyphicon glyphicon-minus-sign"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="pull-right">
+            <a class="add-query-item" href="#" ng-click="addRow()" tabindex="-1">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+            </a>
+        </div>
+    </div>
+    <div class="form-group-sm" ng-show="urlData.hash">
+        <label for="input_hash" class="control-label">Hash</label>
+        <input type="text" class="form-control" id="input_hash" ng-model="urlData.hash"/>
+    </div>
+</div>
+<footer>
+    Application's icon made by <a href="http://www.flaticon.com/authors/sebastien-gabriel" title="Sebastien Gabriel">SebastienGabriel</a>
+    from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+    is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+</footer>
+<script type="application/javascript" src="vendor/angular.min.js"></script>
+<script type="application/javascript" src="vendor/url.js"></script>
+<script type="application/javascript" src="js/popup.js"></script>
+</body>
+</html>

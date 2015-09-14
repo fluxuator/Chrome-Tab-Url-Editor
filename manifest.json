@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "AddressBarDetails",
+    "description": "Edit url of address bar",
+    "version": "1.0.0",
+    "icons": {
+        "24": "img/icon-24.png",
+        "128": "img/icon-128.png"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "*://*/*"
+    ],
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ],
+        "persistent": false
+    },
+    "page_action": {
+        "default_title": "Show address details",
+        "default_icon": "img/icon-24.png",
+        "default_popup": "popup.html"
+    }
+}
